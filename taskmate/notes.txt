@@ -1,0 +1,16 @@
+Crispy forms:
+
+pip install django-crispy-forms
+pip install crispy_bootstrap5
+
+Now add 'crispy_forms' and 'crispy_bootstrap5' in installed apps(settings)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+
+in register.html
+
+{%load crispy_forms_tags%}
+
+use filter ---> {{register_form|crispy}}

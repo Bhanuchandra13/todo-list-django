@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Task{% endblock title %}
+
+{% block content %}
+<br>
+
+{% for message in messages %}
+<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{%if task_obj.manager == request.user%}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="task" placeholder="Task" value="{{ task_obj.task }}" required>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="done" id="doneCheckbox" {% if task_obj.done %}checked{% endif %}>
+            <label class="form-check-label" for="doneCheckbox">
+                Done
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{%else%}
+<p>Access restricted, You are not allowed</p>
+{%endif%}
+{% endblock content %}

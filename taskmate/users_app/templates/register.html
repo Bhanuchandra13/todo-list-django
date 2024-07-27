@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+
+{%block title%}Register page - Taskmate{%endblock title%}
+
+{%block content%}
+<br>
+{% for message in messages %}
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        {{register_form|crispy}}  <!--as_p is used to make as paragraph-->
+        <button type="submit">Register</button>
+    </form>
+{%endblock content%}
